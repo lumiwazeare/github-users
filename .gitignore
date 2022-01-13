@@ -129,5 +129,5 @@ dmypy.json
 .pyre/
 
 #remove local db
-github.db
+/app/main/database/github_users.db
 .vscode

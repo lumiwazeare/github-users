@@ -1,13 +1,13 @@
 from flask import Flask
-from app.user_route import user_app
+from app.user_route import construct_user_blueprint
 from app.config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from app.user_service import UserService
 
 
 app = Flask(__name__)
 app.config.from_object(Config)
-app.register_blueprint(user_app)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
@@ -22,3 +22,8 @@ class UserModel(db.Model):
 
     def __repr__(self) -> str:
         return "<UserModel {}>".format(self.username)
+
+
+# register user services
+userService = UserService(UserModel)
+app.register_blueprint(construct_user_blueprint(db, userService))

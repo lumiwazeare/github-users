@@ -16,5 +16,4 @@ ENV FLASK_APP main.py
 ENV FLASK_ENV production
 
 
-EXPOSE 5000
 CMD ["./boot.sh"]

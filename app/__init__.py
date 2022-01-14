@@ -1,5 +1,6 @@
 from flask import Flask
 from app.user_route import construct_user_blueprint
+from app.user_api_route import construct_user_api_blueprint
 from app.config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -27,3 +28,4 @@ class UserModel(db.Model):
 # register user services
 userService = UserService(UserModel)
 app.register_blueprint(construct_user_blueprint(db, userService))
+app.register_blueprint(construct_user_api_blueprint(db, userService))
